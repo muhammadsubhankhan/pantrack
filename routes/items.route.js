@@ -1,28 +1,25 @@
-const express = require('express');
-const router = express.Router();
-const verifyJWT = require('../middleware/verifyJWT.js');
+const express = require('express')
+const router = express.Router()
+const verifyJWT = require('../middleware/verifyJWT.js')
 // const controller
 const {
-  createItem, deleteAllItems, deleteItem, getAllItems,
-  getcurrentItem, updateItem,
-} = require('../controllers/item.controller.js');
+    createItem,
+    deleteAllItems,
+    deleteItem,
+    getAllItems,
+    getcurrentItem,
+    updateItem,
+} = require('../controllers/item.controller.js')
 
 // router.get('/', function (req, res, next) {
 //     res.json({ message: "Welcome to the item management subsystem api." });
 // });
 
+router.use(verifyJWT)
 
+router.route('/').post(createItem).get(getAllItems).delete(deleteAllItems)
 
-router.use(verifyJWT);
-
-router.route('/')
-  .post(createItem)
-  .get(getAllItems)
-  .get(getcurrentItem)
-  .put(updateItem)
-  .delete(deleteAllItems)
-  .delete(deleteItem)
-
+router.route('/:id').put(updateItem).get(getcurrentItem).delete(deleteItem)
 
 // // Create a new item
 // router.route().post('/items/', createItem);
@@ -42,4 +39,4 @@ router.route('/')
 // // Delete all items of the database
 // router.delete('/items/', deleteAllItems);
 
-module.exports = router;
+module.exports = router
