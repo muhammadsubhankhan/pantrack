@@ -4,7 +4,7 @@ const createError = require('../utils/createError.js')
 
 const createMember = async (req, res, next) => {
     const newMember = new Member({
-        suffix: req.body.title,
+        suffix: req.body.suffix,
 
         first_name: req.body.first_name,
         last_name: req.body.last_name,
@@ -79,7 +79,7 @@ const updateMember = async (req, res, next) => {
         const updatedMember = await Member.findByIdAndUpdate(
             req.params.id,
             {
-                suffix: req.body.title,
+                suffix: req.body.suffix,
                 first_name: req.body.first_name,
                 last_name: req.body.last_name,
                 Ministry: req.body.Ministry,
