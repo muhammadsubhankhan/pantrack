@@ -76,8 +76,8 @@ const updateEvent = async (req, res, next) => {
             req.params.id,
             {
                 event_name: req.body.event_name,
-                attendees: req.member.id,
-                offering_name: req.offering.id,
+                attendees: req.body.attendees,
+                offering_name: req.body.offering_name,
                 event_description: req.body.event_description,
                 special_guests: req.body.special_guests,
                 guests: req.body.guests,
