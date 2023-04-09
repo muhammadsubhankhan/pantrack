@@ -70,7 +70,7 @@ const updateEvent = async (req, res, next) => {
       return next(createError({ status: 404, message: " Event not found" }));
     }
 
-    const updatedEvent = await Event.findByIdAndUpdate(
+    const data = await Event.findByIdAndUpdate(
       req.params.id,
       {
         event_name: req.body.event_name,
@@ -85,7 +85,9 @@ const updateEvent = async (req, res, next) => {
       { new: true }
     );
 
-    return res.status(200).json(updatedEvent);
+    return res
+      .status(200)
+      .json({ message: "Event has been updated successfully", data });
   } catch (error) {
     return next(error);
   }
